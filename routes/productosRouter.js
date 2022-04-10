@@ -36,12 +36,11 @@ const prod = new Producto()
 prod.saveProduct({"name": "Camiseta", "description": "Camiseta barcelona", "price": "129", "image": "url", "stock": "20"})
 prod.saveProduct({"name": "Pantalon", "description": "Pantalon barcelona", "price": "139", "image": "url", "stock": "5"})
 prod.getAll()
-prod.getById(1)
+//prod.getById(1)
 
 //Endpoints
 router.get("/", async (req,res)=>{
     let productos = await prod.getAll()
-    console.log(productos)
     res.send(productos)
 })
 router.get("/:id", (req,res)=>{
@@ -49,5 +48,6 @@ router.get("/:id", (req,res)=>{
     let productosById = prod.getById(id)
     res.send(productosById)
 })
+
 
 module.exports = router;
