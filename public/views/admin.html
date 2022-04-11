@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+</head>
+<body>
+    <h2>Agrega un producto</h2>
+    <form action="http://localhost:8080/api/productos" method="POST">
+        <label for="name">Nombre del producto</label>
+        <input type="text" name="name" id="prodName"><br>
+        <label for="price">Precio</label>
+        <input type="number" name="price"><br>
+        <label for="description">Descripcion</label>
+        <input type="text" name="description"><br>
+        <label for="image">Ingrese la url de la imagen de su producto</label>
+        <input type="url" name="image"><br>
+        <label for="stock">Stock disponible</label>
+        <input type="number" name="stock"><br>
+        <button type="submit">Enviar producto</button>
+    </form>
+    <h2>Encuentra tu producto</h2>
+    <form action="http://localhost:8080/api/productos" method="get">
+        <button type="submit">Ver todos los productos</button><br>
+    </form><br>
+</body>
+</html>

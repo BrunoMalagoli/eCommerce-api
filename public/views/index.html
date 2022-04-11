@@ -8,14 +8,19 @@
 </head>
 <body>
     <h1>eCommerce</h1>
-    <form action="http://localhost:8080/" method="POST">
+    <h2>Login administrador</h2>
+    <form action="http://localhost:8080/admin" method="POST">
         <label for="user">Usuario</label>
         <input type="text" name="user">
         <label for="pass">Contraseña</label>
         <input type="password" name="pass">
         <button type="submit"> Enviar </button>
     </form>
-
+    <h2>Login usuarios</h2>
+    <form action="http://localhost:8080/user" method="POST">
+        <span>No tienes un usuario? No hay problema continua como anónimo</span>
+        <button type="submit">Ingresar</button>
+    </form>
     <!--<script type ="module" src="../js/vista.js"></script>-->
 </body>
 </html>

@@ -27,21 +27,33 @@ server.on("error", (error)=>{
 app.get("/" ,(req, res)=>{
     res.sendFile(__dirname + "/public/views/index.html")
 })
+//Admin
+app.get("/admin" , (req, res)=>{
+    res.send(adminLogged)
+})
 //Login
-app.post("/" , (req,res , next)=>{
+//Administrador
+app.post("/admin" , (req,res , next)=>{
     if(req.body.user === "admin" && req.body.pass == 123){
         setAdmin(true)
         console.log("Admin conectado");
         console.log(adminLogged)
         next()
     }else{
-        res.send({error: "Acceso no permitido"})
+        setAdmin(false)
+        res.json({error: -1, description: req.url , method: req.method, message: "not allowed"})
         }
     },
     (req, res)=>{
-        res.sendFile(__dirname + "/public/views/index.html")
+        res.sendFile(__dirname + "/public/views/admin.html")
     }
 )
+//Usuario
+app.post("/user", (req,res)=>{
+    setAdmin(false);
+    console.log("Usuario conectado");
+    res.sendFile(__dirname + "/public/views/user.html")
+})
 //404
 app.use((req,res)=>{
     res.status(404);

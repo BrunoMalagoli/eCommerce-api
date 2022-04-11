@@ -1,1 +1,1 @@
-[{"name":"Camiseta","description":"Camiseta barcelona","price":"129","image":"url","stock":"20","id":1,"timestamp":1649632687247,"codigo":34130},{"name":"Pantalon","description":"Pantalon barcelona","price":"139","image":"url","stock":"5","id":2,"timestamp":1649632687248,"codigo":69228}]
+[{"name":"Camiseta","description":"Camiseta barcelona","price":"129","image":"url","stock":"20","id":1,"timestamp":1649649071694,"codigo":50538},{"name":"Pantalon","description":"Pantalon barcelona","price":"139","image":"url","stock":"5","id":2,"timestamp":1649649071695,"codigo":84707}]
