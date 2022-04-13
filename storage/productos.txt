@@ -1,1 +1,1 @@
-[{"name":"botines ","description":"botines adidas","price":"5000","image":"url","stock":"2","id":"0","timestamp":1649877904999,"codigo":69112},{"name":"camisa do fuchibol","description":"camisa pra jugar fuchibol","price":"9000","image":"url","stock":"20","id":1,"timestamp":1649877889941,"codigo":66981}]
+["deleted",{"name":"camisa do fuchibol","description":"camisa pra jugar fuchibol","price":"9000","image":"url","stock":"20","id":1,"timestamp":1649877889941,"codigo":66981}]

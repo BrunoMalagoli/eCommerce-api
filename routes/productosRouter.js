@@ -74,8 +74,11 @@ const prod = new Producto()
 //prod.saveProduct({"name": "Pantalon", "description": "Pantalon barcelona", "price": "139", "image": "url", "stock": "5"})
 prod.getAll()
 //prod.getById(1)
+
 //Declaracion admin
 let adminLogged
+
+
 //Endpoints
 router.get("/", async (req,res)=>{
     let productos = await prod.getAll()
@@ -125,5 +128,22 @@ router.post("/", async (req , res)=>{
         res.json({error: -1, description: req.url , method: req.method, message: "not allowed"})
     }
 })
-
+router.delete("/:id", async (req,res)=>{
+    let id = req.params.id
+    await axios.get("http://localhost:8080/admin").then(response=>{
+        console.log(response.data)
+        adminLogged = response.data
+    })
+    if(adminLogged == true){
+        try{
+            await prod.deleteById(id);
+            res.send(await prod.getAll())
+        }
+        catch(err){
+            console.log(err)
+        }
+    }else{
+        res.json({error: -1, description: req.url , method: req.method, message: "not allowed"})
+    }
+})
 module.exports = router;
