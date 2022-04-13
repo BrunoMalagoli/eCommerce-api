@@ -25,5 +25,10 @@
     <form action="http://localhost:8080/api/productos" method="get">
         <button type="submit">Ver todos los productos</button><br>
     </form><br>
+    <form action="http://localhost:8080/api/productos/:id" method="get">
+        <label for="id">Encuentra tu producto por ID</label>
+        <input type="number" name="id">
+        <button type="submit">Enviar ID</button>
+    </form>
 </body>
 </html>
