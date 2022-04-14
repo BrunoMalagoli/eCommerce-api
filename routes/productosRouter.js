@@ -24,7 +24,7 @@ class Producto{
         if(productos.length >=1){
             return productos
         }else{
-            return "No se encontraron productos"
+            return "{error : No se encontraron productos}"
         }
     }
     async getById(id){
