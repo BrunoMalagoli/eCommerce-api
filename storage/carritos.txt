@@ -1,1 +1,1 @@
-[{"id":0,"timestamp":1649998353045,"productos":{"camisa":"del barcita"}}]
+[{"id":0,"timestamp":1650004127340,"productos":{"name":"Pelota","description":"Pelota de futbol","price":"2131","image":"https://megasports.vteximg.com.br/arquivos/ids/199149-1000-1000/06463100003_0.jpg?v=637625556495900000","stock":"2","id":0,"timestamp":1649879990117,"codigo":7258}}]

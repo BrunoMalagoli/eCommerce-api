@@ -22,10 +22,11 @@ class Carrito{
             }
         }else{
             let array = this.arrayCarrito;
+            carrito.productos = null;
             array.push(carrito)
             await fs.promises.writeFile("./storage/carritos.txt", JSON.stringify(array))
-        }
         return carrito.id
+        }
     }
     async deleteById(id){
         try{
@@ -57,24 +58,69 @@ class Carrito{
             console.log(err)
         }
     }
+    async addById(id){
+        try{
+            let productos = await fs.promises.readFile("./storage/productos.txt", "utf-8");
+            let array = this.arrayCarrito;
+            productos = await JSON.parse(productos);
+            const productoById = await productos.filter((prod)=> prod.id === id);
+            array[0].productos = productoById[0]
+            await fs.promises.writeFile("./storage/carritos.txt", JSON.stringify(array))
+            return array
+        }catch(err){
+            console.log(err)
+        }
+    }
+    async deleteByProd(idCarr, idProd){
+        try{
+            let carrito = await fs.promises.readFile("./storage/carritos.txt", "utf-8");
+            carrito = await JSON.parse(carrito);
+            const carritoById = await carrito.filter((carr)=> carr.id === idCarr);
+            let checkProd = await carritoById.some((products)=>{
+                return products.id == idProd
+            })
+            console.log(checkProd)
+            if(checkProd === true){
+                let productoFilter = await carritoById.filter((productos)=>{
+                    return productos.id == idProd
+                })
+                productoFilter[0].productos = "deleted"
+                return await productoFilter
+            }else{
+                return console.log("Producto no existente en este carrito")
+            }
+        }catch(err){
+            console.log(err)
+        }
+    }
 }
 //Instancias
 const carr = new Carrito();
 //carr.createCarrito();
-//carr.createCarrito({"productos":" camiseta del barcita"})
+//carr.addById(0)
+//carr.deleteByProd(0,0)
 //Endpoints
 router.get("/", (req,res)=>{
     res.send("Aqui esta el carrito")
 })
 router.post("/", async (req, res)=>{
-    res.json({"Id del carrito": await carr.createCarrito({"camisa":"del barcita"})})
+    res.json({"Id del carrito": await carr.createCarrito()})
 })
 router.delete("/:id", async (req,res)=>{
-    let id = req.params.id;
+    let id = parseInt(req.params.id);
     res.json({"Carrito eliminado, contenido actual": await carr.deleteById(id)})
 })
 router.get("/:id/productos", async (req,res)=>{
     let id = parseInt(req.params.id);
     res.json({"Tus productos" : await carr.getById(id)})
+})
+router.post("/:id/productos", async (req, res)=>{
+    let id = parseInt(req.params.id);
+    res.json({"Agregado producto por ID": await carr.addById(id)})
+})
+router.delete("/:id/productos/:id_prod", async (req,res)=>{
+    let idCarr = parseInt(req.params.id);
+    let idProd = parseInt(req.params.id_prod);
+    res.json({"Producto eliminado, resultado": await carr.deleteByProd(idCarr, idProd)})
 })
 module.exports = router;
