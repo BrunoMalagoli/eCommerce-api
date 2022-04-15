@@ -76,16 +76,18 @@ class Carrito{
             let carrito = await fs.promises.readFile("./storage/carritos.txt", "utf-8");
             carrito = await JSON.parse(carrito);
             const carritoById = await carrito.filter((carr)=> carr.id === idCarr);
-            let checkProd = await carritoById.some((products)=>{
-                return products.id == idProd
+            await carritoById.map((carr)=>{
+                return carr.productos["id"] == idProd
             })
-            console.log(checkProd)
-            if(checkProd === true){
-                let productoFilter = await carritoById.filter((productos)=>{
-                    return productos.id == idProd
+            let checkId = await carritoById.some((carr)=>{
+                return carr.productos["id"] == idProd
+            })
+            console.log(await checkId)
+            if(checkId == true){
+                await carritoById.map((carr)=>{
+                    return carr.productos = "deleted";
                 })
-                productoFilter[0].productos = "deleted"
-                return await productoFilter
+                return await carritoById
             }else{
                 return console.log("Producto no existente en este carrito")
             }
