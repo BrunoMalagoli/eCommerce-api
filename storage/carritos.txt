@@ -1,1 +1,1 @@
-[{"id":0,"timestamp":1650050522515,"productos":{"name":"camisa fuchibol","description":"camisa pra jugar fuchibol","price":"9000","image":"url","stock":"20","id":1,"timestamp":1650050519543,"codigo":42891}}]
+[{"id":0,"timestamp":1650162792625,"productos":{"name":"camisa fuchibol","description":"camisa pra jugar fuchibol","price":"9000","image":"url","stock":"20","id":1,"timestamp":1650162788490,"codigo":72698}},{"id":1,"timestamp":1650162795330,"productos":null}]
