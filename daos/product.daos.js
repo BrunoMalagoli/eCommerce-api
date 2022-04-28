@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const ProductoSchema = require("./modelsMDB/schemaProd")
-
+const url = require("./bd/mongoUrl")
 class ProductoDAOS{
     constructor(){
-        this.url = "mongodb+srv://bmalagoli:kkdvk12@bdev.kdnxc.mongodb.net/entregaFinal?retryWrites=true&w=majority"
+        this.url = url
     }
     async connectMDB(){
         try{
@@ -53,9 +53,10 @@ class ProductoDAOS{
     async updateById(idP, newCont){
         try{
             await this.connectMDB();
-            const updated = await ProductoSchema.findByIdAndUpdate({_id: idP}, {newCont})
+            await ProductoSchema.findByIdAndUpdate({_id: idP}, newCont)
+            const prod = await ProductoSchema.findById({_id: idP})
             await mongoose.disconnect();
-            return updated
+            return prod
         }
         catch(e){
             console.log(e)
