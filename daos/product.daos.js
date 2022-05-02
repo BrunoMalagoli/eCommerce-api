@@ -31,7 +31,7 @@ class ProductoDAOS{
     async getById(idP){
         try{
             await this.connectMDB();
-            const prod = await ProductoSchema.findById({_id: idP})
+            let prod = await ProductoSchema.findById({_id: idP})
             await mongoose.disconnect()
             return prod
         }
