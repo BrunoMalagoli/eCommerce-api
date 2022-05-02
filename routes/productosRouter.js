@@ -1,8 +1,7 @@
 const axios = require("axios")
 const express = require("express");
 const router = express.Router();
-const prodDaos = require("../daos/product.daos")
-const pDaos = new prodDaos()
+const {pDAOS} = require("../daos/index.daos")
 //configs
 router.use(express.json())
 router.use(express.urlencoded({extended: true}))
@@ -12,12 +11,12 @@ router.use(express.urlencoded({extended: true}))
 let adminLogged
 //Endpoints
 router.get("/", async (req,res)=>{
-    let productos = await pDaos.getAllProducts()
+    let productos = await pDAOS.getAllProducts()
     res.send(productos)
 })
 router.get("/:id", async (req,res)=>{
     let id = req.params.id;
-    let productosById = await pDaos.getById(id)
+    let productosById = await pDAOS.getById(id)
     res.send(productosById)
 })
 router.put("/:id", async (req, res)=>{
@@ -30,8 +29,8 @@ router.put("/:id", async (req, res)=>{
     })
     if(adminLogged == true){
     try{
-        await pDaos.updateById(id, product);
-        res.send(await pDaos.getAllProducts())
+        await pDAOS.updateById(id, product);
+        res.send(await pDAOS.getAllProducts())
     }
     catch(err){
         console.log(err)
@@ -53,7 +52,7 @@ router.post("/", async (req , res)=>{
         console.log(err)
     }
     if(adminLogged == true){
-        await pDaos.createProduct(product);
+        await pDAOS.createProduct(product);
         res.json({"Exito": "Su producto se guardo exitosamente"})
     }else{
         res.json({error: -1, description: req.url , method: req.method, message: "not allowed"})
@@ -67,8 +66,8 @@ router.delete("/:id", async (req,res)=>{
     })
     if(adminLogged == true){
         try{
-            await pDaos.deleteById(id);
-            res.send(await pDaos.getAllProducts())
+            await pDAOS.deleteById(id);
+            res.send(await pDAOS.getAllProducts())
         }
         catch(err){
             console.log(err)

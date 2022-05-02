@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const cartDaos = require("../daos/cart.daos")
-const cDaos = new cartDaos()
+const {cDaos} = require("../daos/index.daos")
 
 //Endpoints
 router.get("/", (req,res)=>{
